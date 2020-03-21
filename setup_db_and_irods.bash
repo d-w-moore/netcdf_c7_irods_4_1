@@ -3,7 +3,7 @@ set -e
 self="$0"
 
 if [ "$1" = 'all' ]; then
-    for arg in {1..3}
+    for arg in {1..3} # including '4' will shut down database (for inclusion as docker build stage)
     do
         "$self" $arg || exit $?
     done
@@ -21,11 +21,12 @@ then
         su - postgres -c 'psql -f /tmp/irods.sql'
         /var/lib/irods/packaging/setup_irods.sh <<<$'\n\n\n\n\n\n\n\n\n\n\n\n\nrods\nyes\nlocalhost\n5432\nICAT\nirods\ntestpassword\nyes'
     }
-#   su - postgres -c 'psql -f /tmp/irods.sql'
-    su - postgres -c 'pg_ctl stop'
 elif [ "$1" = '3' ]
 then
     [ -d /irods_netcdf ] && cd /irods_netcdf &&  {
         rpm -ivh $(find -type f -name '*.rpm')
     }
+elif [ "$1" = '4' ]
+then
+    su - postgres -c 'pg_ctl stop'
 fi
