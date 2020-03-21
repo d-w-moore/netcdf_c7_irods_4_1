@@ -9,7 +9,7 @@ Instructions:
    ```
    - Run the container.
    ```
-   $ docker run netcdf_services_irods_4_1 .
+   $ docker run -it netcdf_services_irods_4_1
    ```
    - Within container, run this command line to instal iRODS and NetCDF RPMs
    ```
