@@ -10,7 +10,6 @@ RUN yum install -y postgresql-odbc which lsof
   #RUN rpm -ivh irods-runtime-4.1.12-centos7-x86_64.rpm 
 RUN rpm -ivh irods-dev-4.1.12-centos7-x86_64.rpm 
 RUN yum install -y openssl postgresql-server
-RUN rpm -ivh irods-icat-4.1.12-centos7-x86_64.rpm 
   #RUN yum install -y authd
 RUN yum install -y irods-server irods-database-plugin-postgres
 COPY irods.sql /tmp
