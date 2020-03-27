@@ -8,9 +8,11 @@ RUN yum install -y python-{psutil,requests,jsonschema}
 RUN yum install -y fuse-libs perl-JSON
 RUN yum install -y postgresql-odbc which lsof
   #RUN rpm -ivh irods-runtime-4.1.12-centos7-x86_64.rpm 
-RUN rpm -ivh irods-dev-4.1.12-centos7-x86_64.rpm 
+  #RUN rpm -ivh irods-dev-4.1.12-centos7-x86_64.rpm 
 RUN yum install -y openssl postgresql-server
   #RUN yum install -y authd
+RUN sudo rpm --import https://packages.irods.org/irods-signing-key.asc
+RUN wget -qO - https://packages.irods.org/renci-irods.yum.repo | sudo tee /etc/yum.repos.d/renci-irods.yum.repo
 RUN yum install -y irods-server irods-database-plugin-postgres
 COPY irods.sql /tmp
 COPY setup_db_and_irods.bash /tmp/
